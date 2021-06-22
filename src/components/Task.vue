@@ -5,7 +5,7 @@
         <b>{{ name }}</b>
       </h1>
       <p>{{ description }}</p>
-      <button @click="finishTask" class="button">Done</button>
+      <button @click="finishTask(num)" class="button">Done</button>
     </div>
   </div>
 
@@ -30,9 +30,9 @@ export default {
   },
 
   methods: {
-    finishTask() {
-      this.currentTask = "false";
-      console.log(this.currentTask);
+    finishTask(numId) {
+      this.$emit('task-done', numId)
+      console.log(numId)
     },
   },
 };
@@ -47,6 +47,7 @@ export default {
   background: white;
   color: black;
   margin: auto;
+  padding: 10px;
 }
 
 .card:hover {
