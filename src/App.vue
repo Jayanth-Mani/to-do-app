@@ -1,20 +1,17 @@
 <template>
   <Nav />
-  <img alt="Vue logo" src="./assets/logo.png" />
 
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+ 
   <Tasks/> 
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
 import Nav from "./components/Nav.vue";
 import Tasks from "./components/Tasks.vue";
 export default {
   name: "App",
   components: {
     Nav,
-    HelloWorld,
     Tasks,
 
   },
@@ -29,5 +26,9 @@ export default {
   text-align: center;
   color: #fff;
   margin-top: 60px;
+}
+
+#logo {
+  align-self: center;
 }
 </style>
