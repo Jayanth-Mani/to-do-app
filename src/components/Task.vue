@@ -2,7 +2,7 @@
   <div class="card" v-if="currentTask">
     <div class="container">
       <h1>
-        <b>{{ name }}</b>
+        <b>{{ num + ": " + name }}</b>
       </h1>
       <p>{{ description }}</p>
       <button @click="finishTask(num)" class="button">Done</button>

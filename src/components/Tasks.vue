@@ -1,5 +1,6 @@
 <template>
-    <NewTask @create-new-task="createTask"/>
+    <TaskButton @toggle-task="toggleAddTask" :text="addTask ? 'Close' : 'Add'" :color="addTask ? '#e0094a' : '#32a852'"/>
+    <NewTask @create-new-task="createTask" v-if="addTask"  v-show="addTask"/>
     <div>
    <ul class="list">
     <li :key= "task.num" v-for="task in tasks">  <Task @task-done="taskDone" :num="task.num" :name="task.name" :description="task.description" /> </li>
@@ -14,7 +15,7 @@
 <script>
 import Task from "./Task.vue";
 import NewTask from "./NewTask.vue"
-
+import TaskButton from "./Button.vue"
 
 export default {
 
@@ -34,13 +35,16 @@ export default {
                 description:"Trying this out"
             }
         
-        ]
+        ],
+
+        addTask: false,
     }
 },
 components: {
    
     Task,
-    NewTask
+    NewTask,
+    TaskButton,
   },
 
   methods: {
@@ -48,7 +52,11 @@ components: {
           this.tasks = this.tasks.filter((task) => task.num !== numId)
       },
       createTask(newTask){
+          newTask.num = this.tasks.length + 1
         this.tasks = [...this.tasks, newTask]
+      },
+      toggleAddTask(){
+          this.addTask = !this.addTask
       }
   },
 }
