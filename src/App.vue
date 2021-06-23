@@ -1,19 +1,23 @@
 <template>
+  <body>
   <Nav />
-
- 
   <Tasks/> 
+  </body>
+
+  <Footer/>
 </template>
 
 <script>
 
 import Nav from "./components/Nav.vue";
 import Tasks from "./components/Tasks.vue";
+import Footer from "./components/Footer.vue"
 export default {
   name: "App",
   components: {
     Nav,
     Tasks,
+    Footer
 
   },
 };
@@ -35,4 +39,11 @@ export default {
 #logo {
   align-self: center;
 }
+
+body {
+   clear: both;
+   margin-bottom: 100px;
+
+}
+
 </style>
