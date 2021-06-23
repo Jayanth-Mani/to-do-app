@@ -1,8 +1,14 @@
 <template>
     <NewTask @create-new-task="createTask"/>
+    <div>
    <ul class="list">
     <li :key= "task.num" v-for="task in tasks">  <Task @task-done="taskDone" :num="task.num" :name="task.name" :description="task.description" /> </li>
   </ul>
+  </div>
+
+  <div  v-if="tasks.length === 0">
+      <h2>No Tasks!</h2>
+  </div>
 </template>
 
 <script>
