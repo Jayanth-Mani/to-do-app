@@ -1,11 +1,14 @@
 <template>
-   <ul>
+    <NewTask @create-new-task="createTask"/>
+   <ul class="list">
     <li :key= "task.num" v-for="task in tasks">  <Task @task-done="taskDone" :num="task.num" :name="task.name" :description="task.description" /> </li>
   </ul>
 </template>
 
 <script>
 import Task from "./Task.vue";
+import NewTask from "./NewTask.vue"
+
 
 export default {
 
@@ -14,14 +17,14 @@ export default {
         return {
          tasks: [
             {
-                num: 0,
+                num: 1,
                 name: "Test",
                 description:"Trying this out"
             },
 
               {
-                num: 1,
-                name: "Test",
+                num: 2,
+                name: "Nice",
                 description:"Trying this out"
             }
         
@@ -31,16 +34,24 @@ export default {
 components: {
    
     Task,
+    NewTask
   },
 
   methods: {
       taskDone(numId){
           this.tasks = this.tasks.filter((task) => task.num !== numId)
+      },
+      createTask(newTask){
+        this.tasks = [...this.tasks, newTask]
       }
-  }
+  },
 }
+  
 </script>
 
 <style>
+.list {
+    list-style-type: none;
 
+}
 </style>

@@ -9,15 +9,14 @@
 <script>
 import HelloWorld from "./components/HelloWorld.vue";
 import Nav from "./components/Nav.vue";
-// import Task from "./components/Task.vue";
 import Tasks from "./components/Tasks.vue";
 export default {
   name: "App",
   components: {
     Nav,
     HelloWorld,
-    //Task,
     Tasks,
+
   },
 };
 </script>

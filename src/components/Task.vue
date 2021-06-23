@@ -32,7 +32,6 @@ export default {
   methods: {
     finishTask(numId) {
       this.$emit('task-done', numId)
-      console.log(numId)
     },
   },
 };
@@ -42,16 +41,16 @@ export default {
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  width: 40%;
+  width: 60%;
   border-radius: 5px;
-  background: white;
-  color: black;
+  background: #257679;
+  color: white;
   margin: auto;
-  padding: 10px;
+  margin-bottom: 20px;
 }
 
 .card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 1);
 }
 
 
