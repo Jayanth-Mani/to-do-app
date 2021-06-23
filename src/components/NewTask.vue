@@ -24,9 +24,11 @@ export default {
         createNewTask() {
             if (!this.num){
                 alert("Please enter task number")
+                return
             }
             else if (!this.name) {
                 alert("Please enter a task name")
+                return
             }
 
             const newTask = {
