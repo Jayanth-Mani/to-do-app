@@ -22,3 +22,8 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+### Firebase
+
+Firebase support is in the project, but a firebaseConfig.js file is needed and project keys need to be added from a firebase project. 
