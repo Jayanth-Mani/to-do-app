@@ -67,8 +67,6 @@ export default {
     width: 25%;
     padding: 10px;
     border-color: white;
-      font-family:
-
 
 }
 
