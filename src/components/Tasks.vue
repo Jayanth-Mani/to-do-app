@@ -3,11 +3,11 @@
     <NewTask @create-new-task="createTask" v-if="addTask"  v-show="addTask"/>
     <div>
    <ul class="list">
-    <li :key= "task.num" v-for="task in tasks">  <Task @task-done="taskDone" :num="task.num" :name="task.name" :description="task.description" /> </li>
+    <li :key= "task.id" v-for="task in tasks">  <Task @task-done="taskDone" :num="task.num" :name="task.name" :description="task.description" :id="task.id"/> </li>
   </ul>
   </div>
 
-  <div  v-if="tasks.length === 0">
+  <div v-if="tasks.length === 0">
       <h2>No Tasks!</h2>
   </div>
 </template>
@@ -16,26 +16,14 @@
 import Task from "./Task.vue";
 import NewTask from "./NewTask.vue"
 import TaskButton from "./Button.vue"
+import db from './firebaseInit'
 
 export default {
 
     name: "Tasks",
     data(){
         return {
-         tasks: [
-            {
-                num: 1,
-                name: "Test",
-                description:"Trying this out"
-            },
-
-              {
-                num: 2,
-                name: "Nice",
-                description:"Trying this out"
-            }
-        
-        ],
+         tasks: [],
 
         addTask: false,
     }
@@ -49,23 +37,60 @@ components: {
 
   methods: {
       taskDone(numId){
-          this.tasks = this.tasks.filter((task) => task.num !== numId)
-      },
+          
+          this.tasks = this.tasks.filter((task) => task.id !== numId)
+          db.collection("tasks").doc(numId).delete().then(() => {
+            console.log("Document successfully deleted!");
+                }).catch((error) => {
+                    console.error("Error removing document: ", error);
+        });
+        
+
+    },
       createTask(newTask){
-          newTask.num = this.tasks.length + 1
-        this.tasks = [...this.tasks, newTask]
-      },
+
+        let newTaskRef = db.collection("tasks").doc();
+        let newId = newTaskRef.id
+        newTask.id = newId
+        newTask.num = this.tasks.length + 1
+        newTaskRef.set({
+        id: newId,
+        num: newTask.num,
+        name: newTask.name,
+        description: newTask.description
+});
+
+console.log(newId)
+        
+    this.tasks = [...this.tasks, newTask]
+
+
+   
+},
       toggleAddTask(){
           this.addTask = !this.addTask
       }
   },
+
+  created(){
+      db.collection("tasks").orderBy("num", "asc").get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+        this.tasks.push(doc.data());
+        
+    });
+});
+  }
+  
 }
+  
   
 </script>
 
+
 <style>
+
 .list {
     list-style-type: none;
-
 }
+
 </style>

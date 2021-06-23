@@ -5,7 +5,7 @@
         <b>{{ num + ": " + name }}</b>
       </h1>
       <p>{{ description }}</p>
-      <button @click="finishTask(num)" class="button">Done</button>
+      <button @click="finishTask(id)" class="button">Done</button>
     </div>
   </div>
 
@@ -18,6 +18,7 @@
 export default {
   name: "Task",
   props: {
+    id: String,
     num: Number,
     name: String,
     description: String,

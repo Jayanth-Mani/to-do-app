@@ -6,6 +6,7 @@
 </template>
 
 <script>
+
 import Nav from "./components/Nav.vue";
 import Tasks from "./components/Tasks.vue";
 export default {
@@ -16,6 +17,9 @@ export default {
 
   },
 };
+
+
+
 </script>
 
 <style>

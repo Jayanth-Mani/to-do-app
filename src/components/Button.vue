@@ -1,5 +1,5 @@
 <template>
-  <button id="addTask" @click="toggleTask" :style="{background: color, align: center}">{{text}}  </button>
+  <button id="addTask" @click="toggleTask" :style="{background: color}">{{text}}  </button>
 </template>
 
 <script>

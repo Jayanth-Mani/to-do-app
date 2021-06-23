@@ -15,6 +15,7 @@ export default {
     name: "NewTask",
     data(){
         return{
+            id: '',
             num:'',
             name: '',
             description: '', 
@@ -31,12 +32,14 @@ export default {
                 return
             }
 
-            const newTask = {
+            let newTask = {
+                id : "blank",
                 num: 0,
                 name: this.name,
                 description: this.description
             }
             this.$emit("create-new-task", newTask)
+            this.id = ''
             this.num=''
             this.name=''
             this.description=''
