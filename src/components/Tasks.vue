@@ -39,10 +39,19 @@ components: {
       taskDone(numId){
           
           this.tasks = this.tasks.filter((task) => task.id !== numId)
+/*
+            let taskCounter = 1
+            for (let task of this.tasks) {
+                task.num = taskCounter
+                taskCounter++
+        }
+        */
           db.collection("tasks").doc(numId).delete().then(() => {
             console.log("Document successfully deleted!");
                 }).catch((error) => {
                     console.error("Error removing document: ", error);
+            
+        
         });
         
 
@@ -59,12 +68,8 @@ components: {
         name: newTask.name,
         description: newTask.description
 });
-
-console.log(newId)
         
     this.tasks = [...this.tasks, newTask]
-
-
    
 },
       toggleAddTask(){
@@ -73,13 +78,26 @@ console.log(newId)
   },
 
   created(){
+         
       db.collection("tasks").orderBy("num", "asc").get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
         this.tasks.push(doc.data());
         
     });
 });
+
+
+      
+  },
+
+  beforeUpdate(){
+       let taskCounter = 1
+            for (let task of this.tasks) {
+                task.num = taskCounter
+                taskCounter++
+        }
   }
+
   
 }
   
