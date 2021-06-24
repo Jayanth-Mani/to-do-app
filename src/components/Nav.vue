@@ -3,19 +3,76 @@
   <header class="navbar">
     <strong id="title">Todo</strong>
     <span id="user">{{ user }}</span>
+    <button class="signIn" @click="googleSignIn" v-if="loggedIn===false">  Sign In </button>
+    <button class="signOut" @click="googleSignOut" v-if="loggedIn===true"> Sign Out </button>
   </header>
   </div>
 </template>
 
 <script>
+
+import firebase from 'firebase/app';
+import 'firebase/auth'
 export default {
   name: "Nav",
   data() {
     return {
-      user: "Jay",
-    };
+      loggedIn: false
+    }
   },
-};
+
+  props: {user: String
+  
+  },
+      
+
+  methods: {
+  googleSignIn(){
+    const auth = firebase.auth()
+    const provider = new firebase.auth.GoogleAuthProvider()
+    auth.signInWithPopup(provider)
+
+    firebase.auth().onAuthStateChanged(user => {
+      if (user){
+        const username = user.displayName
+        this.loggedIn = true
+        this.$emit("change-heading", username)
+      }
+      else {
+        return
+      }
+    })
+  },
+
+  googleSignOut(){
+    const auth = firebase.auth()
+    auth.signOut() 
+    firebase.auth().onAuthStateChanged(() => {
+        this.loggedIn = false
+        const username = ''
+        this.$emit("change-heading", username)
+     
+    })
+
+}
+},
+
+created(){
+       firebase.auth().onAuthStateChanged(user => {
+      if (user){
+        const username = user.displayName
+        this.$emit("change-heading", username)
+        this.loggedIn = true
+      }
+      else{
+        this.$emit("change-heading", "")
+      }
+    })
+  }
+
+}
+
+
 </script>
 
 <style>
@@ -44,5 +101,37 @@ text-align: center;
 vertical-align: middle;
 line-height: 60px; 
 font-size: 30px;
+
+}
+
+.signIn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 7%;
+  border-radius: 10px;
+  float: right;
+  margin-right: 25px;
+}
+
+
+.signOut {
+  background-color: #e0094a;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 8%;
+  border-radius: 10px;
+  float: right;
+  margin-right: 25px;
+}
+
+button:hover {
+  opacity: 0.7;
 }
 </style>

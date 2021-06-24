@@ -22,6 +22,7 @@ export default {
     num: Number,
     name: String,
     description: String,
+    createdAt: Date
   },
 
   data() {

@@ -19,6 +19,7 @@ export default {
             num:'',
             name: '',
             description: '', 
+            createdAt: '',
             toggleAddTask: true
 
         }
@@ -36,13 +37,15 @@ export default {
                 id : "blank",
                 num: 0,
                 name: this.name,
-                description: this.description
+                description: this.description,
+                createdAt: 'blank'
             }
             this.$emit("create-new-task", newTask)
             this.id = ''
             this.num=''
             this.name=''
             this.description=''
+            this.createdAt="v"
 
         },
 

@@ -17,6 +17,8 @@ import Task from "./Task.vue";
 import NewTask from "./NewTask.vue"
 import TaskButton from "./Button.vue"
 import db from './firebaseInit'
+import firebase from "firebase/app"
+import 'firebase/firestore'
 
 export default {
 
@@ -39,13 +41,7 @@ components: {
       taskDone(numId){
           
           this.tasks = this.tasks.filter((task) => task.id !== numId)
-/*
-            let taskCounter = 1
-            for (let task of this.tasks) {
-                task.num = taskCounter
-                taskCounter++
-        }
-        */
+
           db.collection("tasks").doc(numId).delete().then(() => {
             console.log("Document successfully deleted!");
                 }).catch((error) => {
@@ -66,7 +62,8 @@ components: {
         id: newId,
         num: newTask.num,
         name: newTask.name,
-        description: newTask.description
+        description: newTask.description,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
 });
         
     this.tasks = [...this.tasks, newTask]
@@ -79,7 +76,7 @@ components: {
 
   created(){
          
-      db.collection("tasks").orderBy("num", "asc").get().then((querySnapshot) => {
+      db.collection("tasks").orderBy("createdAt", "asc").get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
         this.tasks.push(doc.data());
         
