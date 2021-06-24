@@ -12,6 +12,7 @@
     "core-js": "^3.6.5",
     "express-sslify": "^1.2.0",
     "firebase": "^8.6.8",
+    "firebase-tools": "^9.14.0",
     "serve-static": "^1.14.1",
     "vue": "^3.0.0"
   },
