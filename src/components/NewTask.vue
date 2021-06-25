@@ -81,6 +81,8 @@ export default {
     width: 25%;
     padding: 10px;
     border-color: white;
+      cursor: pointer;
+
 
 }
 

@@ -68,6 +68,8 @@ export default {
   color: white;
   border: 2px solid #00fff5;
   border-radius: 12px;
+  cursor: pointer;
+
 }
 
 .button:hover {

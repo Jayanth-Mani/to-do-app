@@ -31,6 +31,8 @@ export default {
   border: 2px solid rgb(0, 0, 0);
   border-radius: 12px;
   text-align: center;
+  cursor: pointer;
+
 
 }
 
