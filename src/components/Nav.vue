@@ -2,7 +2,7 @@
 <div>
   <header class="navbar">
     <strong id="title">Todo</strong>
-    <span id="user">{{ user }}</span>
+    <span id="user">{{ userFullName }}</span>
     <button class="signIn" @click="googleSignIn" v-if="loggedIn===false">  Sign In </button>
     <button class="signOut" @click="googleSignOut" v-if="loggedIn===true"> Sign Out </button>
   </header>
@@ -17,6 +17,7 @@ export default {
   name: "Nav",
   data() {
     return {
+      userFullName: "",
       loggedIn: false
     }
   },
@@ -36,7 +37,7 @@ export default {
       if (user){
         const username = user.displayName
         this.loggedIn = true
-        this.$emit("change-heading", username)
+        this.userFullName = username
       }
       else {
         return
@@ -50,8 +51,7 @@ export default {
     firebase.auth().onAuthStateChanged(() => {
         this.loggedIn = false
         const username = ''
-        this.$emit("change-heading", username)
-     
+        this.userFullName = username
     })
 
 }
@@ -61,11 +61,11 @@ created(){
        firebase.auth().onAuthStateChanged(user => {
       if (user){
         const username = user.displayName
-        this.$emit("change-heading", username)
         this.loggedIn = true
+        this.userFullName = username
       }
       else{
-        this.$emit("change-heading", "")
+        this.userFullName = ''
       }
     })
   }

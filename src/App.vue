@@ -1,6 +1,6 @@
 <template>
   <body>
-  <Nav v-bind:user="user" @change-heading='changeName'  />
+  <Nav />
   <Tasks/> 
   </body>
 
@@ -21,17 +21,9 @@ export default {
 
   },
 
-  data(){
-    return{
-      user: 'Test'
-    } 
-  },
+  
 
-  methods: {
-    changeName(username){
-      this.user = username
-    }
-  }
+  
 };
 
 
