@@ -2,9 +2,11 @@
 <div>
   <header class="navbar">
     <strong id="title">Todo</strong>
-    <span id="user">{{ userFullName }}</span>
     <button class="signIn" @click="googleSignIn" v-if="loggedIn===false">  Sign In </button>
     <button class="signOut" @click="googleSignOut" v-if="loggedIn===true"> Sign Out </button>
+    <span id="user">{{ userFullName }}</span>
+    <router-link to="/about">About</router-link>
+
   </header>
   </div>
 </template>
@@ -83,13 +85,14 @@ created(){
   top: 0; /* Position the navbar at the top of the page */
   width: 100%;
   height: 60px;
+  text-align: center;
 
    
 }
 
 #user {
   font-size: 15px;
-  float: right;
+  display:inline-block;
   margin-right: 40px;
   margin-top: 20px
 
@@ -99,8 +102,8 @@ created(){
 #title {
 text-align: center;
 vertical-align: middle;
-line-height: 60px; 
 font-size: 30px;
+padding: 50px;
 
 }
 
@@ -113,7 +116,7 @@ font-size: 30px;
   cursor: pointer;
   width: 7%;
   border-radius: 10px;
-  float: right;
+display:inline-block;
   margin-right: 25px;
 }
 
@@ -127,7 +130,7 @@ font-size: 30px;
   cursor: pointer;
   width: 8%;
   border-radius: 10px;
-  float: right;
+  display:inline-block;
   margin-right: 25px;
 }
 

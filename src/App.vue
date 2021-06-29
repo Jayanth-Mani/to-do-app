@@ -1,33 +1,25 @@
 <template>
-  <body>
-  <Nav />
-  <Tasks/> 
-  </body>
+
+    <Nav/>
+
+  <router-view/>
 
   <Footer/>
 </template>
 
-<script>
 
+<script>
 import Nav from "./components/Nav.vue";
-import Tasks from "./components/Tasks.vue";
 import Footer from "./components/Footer.vue"
 export default {
   name: "App",
   components: {
     Nav,
-    Tasks,
     Footer
-
   },
-
   
-
   
 };
-
-
-
 </script>
 
 <style>
@@ -36,18 +28,20 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #fff;
-  margin-top: 60px;
+  color: #2c3e50;
+   height: 100vh;
 }
 
-#logo {
-  align-self: center;
+#nav {
+  padding: 30px;
 }
 
-body {
-   clear: both;
-   margin-bottom: 100px;
-
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
 }
 
+#nav a.router-link-exact-active {
+  color: #42b983;
+}
 </style>
