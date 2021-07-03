@@ -1,11 +1,12 @@
 <template>
 <div>
   <header class="navbar">
-    <strong id="title">Todo</strong>
+    <router-link to="/" id="title">To-Do</router-link>
+
     <button class="signIn" @click="googleSignIn" v-if="loggedIn===false">  Sign In </button>
     <button class="signOut" @click="googleSignOut" v-if="loggedIn===true"> Sign Out </button>
     <span id="user">{{ userFullName }}</span>
-    <router-link to="/about">About</router-link>
+    <router-link to="/tasks" v-if="loggedIn"> <button class="task-board">Task Board </button> </router-link>
 
   </header>
   </div>
@@ -54,9 +55,12 @@ export default {
         this.loggedIn = false
         const username = ''
         this.userFullName = username
+        this.$router.push({ path: '/' })
+
     })
 
-}
+},
+
 },
 
 created(){
@@ -84,8 +88,10 @@ created(){
   position: fixed; /* Set the navbar to fixed position */
   top: 0; /* Position the navbar at the top of the page */
   width: 100%;
-  height: 60px;
+  height: 70px;
   text-align: center;
+  margin-bottom:10px;
+
 
    
 }
@@ -94,7 +100,8 @@ created(){
   font-size: 15px;
   display:inline-block;
   margin-right: 40px;
-  margin-top: 20px
+  margin-top: 20px;
+  color: white;
 
 
 }
@@ -104,6 +111,12 @@ text-align: center;
 vertical-align: middle;
 font-size: 30px;
 padding: 50px;
+text-decoration: none;
+color: white; 
+text-decoration: inherit; 
+  font-weight: bold;
+
+
 
 }
 
@@ -136,5 +149,18 @@ display:inline-block;
 
 button:hover {
   opacity: 0.7;
+}
+
+.task-board {
+  background-color: #0966e0;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 9%;
+  border-radius: 10px;
+  display:inline-block;
+  margin-right: 25px;
 }
 </style>

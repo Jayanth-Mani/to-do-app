@@ -1,4 +1,5 @@
 <template>
+    <div class="footer">
   <footer id=footerText>
       ©2021 Jayanth Mani
       <br>
@@ -6,13 +7,16 @@
 
         <div id="images">
             <a href="https://vuejs.org/">
-                <img id = "vueImage" src="../assets/logo.png" alt="Vue">
+                <img id = "image" src="../assets/logo.png" alt="Vue">
             </a>
             <a href="https://firebase.google.com/">
-                <img id="vueImage" src="../assets/firebase.png" alt="Firebase">
+                <img id="image" src="../assets/firebase.png" alt="Firebase">
             </a>
-        </div>  
+        </div> 
+    
+    
 </footer>
+</div>
 </template>
 
 <script>
@@ -22,10 +26,13 @@ export default {
 </script>
 
 <style>
+.footer{
+     background-color: #248e91;
+    color: white
+
+}
     #footerText{
-    bottom: 0;
-    width: 100%;
-    height: auto;   
+
     background-color: #248e91;
 }   
 
@@ -35,7 +42,7 @@ export default {
         
     }
 
-    #vueImage {
+    #image {
         height:70px;
         width: auto;
         margin-left: 50px;

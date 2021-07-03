@@ -53,12 +53,12 @@ components: {
 
     },
       createTask(newTask){
-
         let newTaskRef = db.collection("tasks").doc();
         let newId = newTaskRef.id
         newTask.id = newId
         newTask.num = this.tasks.length + 1
         newTaskRef.set({
+        uid: newTask.uid,
         id: newId,
         num: newTask.num,
         name: newTask.name,
@@ -75,8 +75,8 @@ components: {
   },
 
   created(){
-         
-      db.collection("tasks").orderBy("createdAt", "asc").get().then((querySnapshot) => {
+    let newUserId =  firebase.auth().currentUser.uid     
+      db.collection("tasks").where("uid", "==", newUserId).orderBy("createdAt", "asc").get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
         this.tasks.push(doc.data());
         

@@ -18,6 +18,7 @@
 export default {
   name: "Task",
   props: {
+    uid: String,
     id: String,
     num: Number,
     name: String,

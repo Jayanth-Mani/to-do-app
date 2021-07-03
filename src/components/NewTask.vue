@@ -10,11 +10,14 @@
 </template>
 
 <script>
+ import firebase from "firebase/app"
+
 export default {
   components: {  },
     name: "NewTask",
     data(){
         return{
+            uid: '',
             id: '',
             num:'',
             name: '',
@@ -34,6 +37,7 @@ export default {
             }
 
             let newTask = {
+                uid: firebase.auth().currentUser.uid,
                 id : "blank",
                 num: 0,
                 name: this.name,
@@ -41,6 +45,7 @@ export default {
                 createdAt: 'blank'
             }
             this.$emit("create-new-task", newTask)
+            this.uid = ''
             this.id = ''
             this.num=''
             this.name=''

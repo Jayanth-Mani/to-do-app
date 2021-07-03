@@ -1,25 +1,28 @@
 <template>
   <div class="home">
     <body class="body">
-    <h1>Home page</h1>
+    <img src="../assets/logo.svg" alt="Task Logo" >
+    <h1>Home Page</h1>
+    <p>Login to manage your tasks!</p>
     </body>
 
   </div>
 </template>
 
 <script>
-//import Nav from "../components/Nav.vue"
 
 export default {
   name: 'Home',
-  components: {
-   // Nav
-    
-  }
+
 }
 </script>
 
+
 <style>
+img {
+  height: 160px;
+  width: auto;
+}
 .home {
  height: 100vh;
  color: white;

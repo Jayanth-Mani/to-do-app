@@ -1,10 +1,11 @@
 <template>
-
-    <Nav/>
-
-  <router-view/>
-
-  <Footer/>
+  <div class="main-container">
+  <Nav class="nav"/>
+  <body>
+  <router-view class="content"/>
+  </body>
+  <Footer class="footer"/>
+  </div>
 </template>
 
 
@@ -23,6 +24,11 @@ export default {
 </script>
 
 <style>
+body {
+display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -32,16 +38,28 @@ export default {
    height: 100vh;
 }
 
-#nav {
-  padding: 30px;
+
+
+
+  
+.footer {
+height: 50px;
+
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.main-container {
+ min-height: 100vh; /* will cover the 100% of viewport */
+ overflow: hidden;
+ display: block;
+ position: relative;
+ padding-bottom: 100px; /* height of your footer */
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+.content {
+  flex: 1;
 }
+.nav{
+  position: fixed;
+}
+
 </style>
