@@ -3,7 +3,7 @@
     <body class="body">
     <img src="../assets/logo.svg" alt="Task Logo" >
     <h1>Home Page</h1>
-    <p>Login to manage your tasks!</p>
+    <p>Login to manage your own, personal tasks!</p>
     </body>
 
   </div>
